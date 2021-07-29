@@ -23,6 +23,7 @@ function run() {
     const table_ = $('<table></table>').appendTo(root_);
      for(const t of tableObjs) {
         const table_ = $('<table></table>').appendTo(root_);
+        table_.append($(`<caption>${t.title}</append>`));
         for(const timekey in t.time){
             const tr = $('<tr></tr>');
             tr.append($(`<th>${timekey}</th>`));
@@ -33,7 +34,7 @@ function run() {
         }
         
      }
-    console.log($.html());
+    //console.log($.html());
      fs.writeFileSync("./pp.html",$.html());
     //console.log(table);
 }
