@@ -34,7 +34,14 @@ export class HtmlFetFile {
     }
 
     tableToHTMLArray(table : cheerio.Element) {
+        let title = this.$(this.$('thead > tr > th ', table).get(0)).html().trim();
+
+        if(!title) {
+            throw new Error("No title in the table");
+        }
+
         const outObj : ArrayTimeTable = {
+            title: title,
             days: [],
             time: {}
         };
@@ -71,6 +78,7 @@ export class HtmlFetFile {
 }
 
 export interface ArrayTimeTable {
+    title: string,
     days : string[],
     time : {
         [key : string] : Array<TimeElem>
